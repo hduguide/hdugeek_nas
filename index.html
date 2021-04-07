@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 感谢 SAIYA 提供的设计母版 -->
+<html lang="zh-CN">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HDUGeek NAS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link href="./css/font.css" rel="stylesheet">
+<link href="./css/main.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./css/daily.css">
+<style>
+	* {margin:0;padding:0;}
+	body {background-image:linear-gradient(0deg, #2D3047, #2D3047);overflow:hidden;}
+	canvas {width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="canvas"></div>
+<header class="header">
+	<div class="intro" title="欢迎访问GEEK文件服务器，点击右下角+开始">
+		<h1 class="title"><a onclick="toggle();showInformation();" href="#" id="tab_MBPS">GEEK NAS<br>File Server</a></h1>
+	</div>
+	<p class="description">AND Powered by WebGL</p>
+	<p class="descriptionRight">Designs made in Three.js</p>
+	<h1 class="theme"  id="tab_1" >Loading</h1>
+	<div class="day">
+		<p class="day__label">HDUGeek<br> <span class="day__stripe"></span><br><a href="https://help-hdugeek-nas.pages.dev/" title="帮助中心" class="day__index">Help?</a></p>
+	</div>
+</header>
+<div class="container intro">
+	<nav id="ctrl" >
+	<i class="iconfont icon-close" onclick="toggle();"></i>
+	<a style="font-family:Montserrat,sans-serif" href="https://help-hdugeek-nas.pages.dev/" class="link top no-iframe" target="_blank" title="帮助中心">帮助中心</a>
+	<a style="font-family:Montserrat,sans-serif" href="https://list.studylong.workers.dev" class="link top no-iframe" target="_blank" title="OneDrive直链">直链镜像</a>
+	<a id="tab_3" style="font-family:Montserrat,sans-serif" href="" class="link top no-iframe" target="_blank" title="Loading">正在连接</a>
+	<a id="tab_2" style="font-family:Montserrat,sans-serif" href="" class="link top no-iframe" target="_blank" title="Loading">正在连接</a>
+	<a style="font-family:Montserrat,sans-serif" onclick="onLineJump_file();onLineJump_desk();" class="link left" target="_blank" title="">刷新节点</a>
+	<a style="font-family:Montserrat,sans-serif;font-size:85%" href="http://pwd.hdu.edu.cn/vpn.aspx" class="link left" target="_blank" title="校外进入校园网的最佳选择">HDU VPN</a>
+	</nav>
+</div>
+<footer>
+<a href="#" style="font-size:80%"> ©2021 hdugeek club All Rights Reserved.</a> <a href="#" style="font-size:80%">Tks 4 YASAI.</a>
+</footer>
+<script src="./js/bundle.js"></script>
+<script src="./js/user.js"></script>
+<script src="./js/load.js"></script>
+<script type="text/javascript" src="./js/three.min.js"></script>
+</body>
+</html>
