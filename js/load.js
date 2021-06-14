@@ -5,30 +5,10 @@ var notschoolflag=1 ;//非校园网
 var timeflag=0;//记录执行次数
 var document_change_shade_flag =1;//修改首页
 
-//src 不可以以/结尾，pri是优先级，数值越低越优先
-var file_json = [{"src":"http://10.21.16.117:7000","pri":1,"success_flag":0},
-    {"src":"http://10.21.16.117/file","pri":2,"success_flag":0},
-    {"src":"http://172.22.22.22:7000","pri":3,"success_flag":0},
-    {"src":"https://nas1.hdugeek.me:17000","pri":5,"success_flag":0},
-    {"src":"https://nas2.hdugeek.me:17000","pri":5,"success_flag":0},
-    {"src":"http://net.dreamer2q.me:17000","pri":5,"success_flag":0},
-    {"src":"http://net2.dreamer2q.me:17000","pri":5,"success_flag":0},
-    {"src":"http://net3.dreamer2q.me:17000","pri":5,"success_flag":0},]
-
-var desk_json = [{"src":"http://10.21.16.117:5000","pri":1,"success_flag":0},
-    {"src":"http://172.22.22.22:5000","pri":3,"success_flag":0},
-    {"src":"https://nas1.hdugeek.me:18080","pri":5,"success_flag":0},
-    {"src":"https://nas2.hdugeek.me:18080","pri":5,"success_flag":0},
-    {"src":"http://net.dreamer2q.me:15000","pri":5,"success_flag":0},
-    {"src":"http://net2.dreamer2q.me:15000","pri":5,"success_flag":0},
-    {"src":"http://net3.dreamer2q.me:15000","pri":5,"success_flag":0},]
-
-//var google_img = {"img_src":"https://www.google.com/favicon.ico","success_flag":0,"success_alert":"当前可访问国际网络，如需加速下载可以使用直连镜像"};
-//var test_img = {"img_src":"https://www.baidu.com/favicon.ico","success_flag":0,"success_alert":"当前网络环境正常"};
-var webvpn_img = {"img_src":'http://pwd.hdu.edu.cn/images/m_logo.png',"success_flag":0,"success_alert":"当前代理速度最高30Mbps，若资料下载太慢请刷新节点或使用HDU VPN，超过4G以上大文件用直连镜像或者校园网可能更快"};
-
 var file_list=[];
 var desk_list=[];
+
+//这里只有逻辑，url请前往url.js修改
 
 //nas端口可用访问
 function image_loader(dict){
@@ -42,7 +22,7 @@ function image_loader(dict){
     image.src = dict["src"]+"/webman/resources/images/default/1x/preview_bar_bg.png" + '?t=' +(+new Date());
 }
 
-//一般端口可用访问
+//一般网页可用访问
 function image_loader_const(dict){
     var image = new Image();
     image.onerror=function(){};
@@ -122,7 +102,7 @@ function document_change_desk(herfof,innertext,title){
     Obj.title = title;
 }
 
-//文件端口判断
+//文件端口判断并修改
 function onLineJump_file() {
     for (i  = 0; i < file_json.length; i++) {
         if(file_json[i]["success_flag"]){
@@ -160,6 +140,9 @@ function onLineJump_file() {
                 if(timeflag>=3 ){
                     alert("欢迎虚拟局域网用户，资料下载速度由您网络穿透情况而定，如速度低于30Mbps建议关闭虚拟局域网");
                 }
+            }else if(file_pri==4){
+                document_change_mbps("GEEK NAS<br>杭电红家代理<br>100Mbps");
+                document_change_file(file_list[Math.floor((Math.random()*file_list.length))],"资料下载","杭电红家节点-100Mbps");
             }else if(file_pri==5){
                 document_change_mbps("GEEK NAS<br>杭电电信代理<br><30Mbps");
                 document_change_file(file_list[Math.floor((Math.random()*file_list.length))],"资料下载","电信代理节点-30Mbps");
@@ -173,7 +156,7 @@ function onLineJump_file() {
     timeflag++;
 }
 
-//桌面端口判断
+//桌面端口判断并修改
 function onLineJump_desk(){
     for (i  = 0; i < desk_json.length; i++) {
         if(desk_json[i]["success_flag"]){
@@ -195,6 +178,8 @@ function onLineJump_desk(){
             document_change_desk(desk_list[Math.floor((Math.random() * desk_list.length))], "应用桌面", "内网节点-100Mbps");
         } else if (desk_pri == 3) {
             document_change_desk(desk_list[Math.floor((Math.random() * desk_list.length))], "应用桌面", "虚拟局域网节点-50Mbps");
+        } else if (desk_pri == 4) {
+            document_change_desk(desk_list[Math.floor((Math.random() * desk_list.length))], "应用桌面", "杭电红家节点-100Mbps");
         } else if (desk_pri == 5) {
             document_change_desk(desk_list[Math.floor((Math.random() * desk_list.length))], "应用桌面", "电信代理节点-30Mbps");
         }
